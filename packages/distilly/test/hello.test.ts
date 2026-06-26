@@ -40,14 +40,15 @@ describe('htmlToMarkdown', () => {
 		expect(markdown).not.toContain('https://example.com/about');
 	});
 
-	test('threads rules (profile) through to the core', async () => {
+	test('threads an explicit rule (profile) through to the core', async () => {
 		// A profile's contentRootSelectors preserve a known content root even when
 		// generic noise heuristics would prune it (asserted at the public seam).
 		// Here a `.sidebar`-classed wrapper with no <main>/<article> inside is
 		// pruned by the generic noise heuristic, but kept when its selector is a
-		// declared content root.
+		// declared content root. The HTML carries NO generator/needle, so the
+		// generic baseline stays generic (auto-detection finds nothing).
 		const html =
-			'<!doctype html><html><body><div id="VPContent" class="sidebar"><h1>Title</h1><p>Content</p></div><p>Outside</p></body></html>';
+			'<!doctype html><html><body><div id="my-content" class="sidebar"><h1>Title</h1><p>Content</p></div><p>Outside</p></body></html>';
 
 		const generic = await htmlToMarkdown(html);
 		expect(generic.markdown).not.toContain('# Title');
@@ -55,8 +56,8 @@ describe('htmlToMarkdown', () => {
 
 		const withRule = await htmlToMarkdown(html, {
 			rules: {
-				contentRootSelectors: ['#VPContent'],
-				key: 'vitepress',
+				contentRootSelectors: ['#my-content'],
+				key: 'custom',
 				markers: [],
 			},
 		});
