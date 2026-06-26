@@ -2,26 +2,26 @@
 title: Vendor the pluggable rules/profiles registry plus a starter per-site rule subset
 slug: vendor-rules-registry-site-subset
 prd: distilly-engine
-needsAnswers: true
 blockedBy: [public-htmltomarkdown-seam-size-presets]
 covers: [5, 6]
+reason: superseded by re-task — conflated curl.md's pure Profiles (vitepress/docusaurus) with its network Rules (github/mdn). Re-decomposed into `vendor-profile-registry-site-subset` (pure) + `network-fetch-entrypoint-rules` (injected-fetch) per ADR-0001.
 ---
 
-## Open questions
+## Cancelled — superseded by re-task
 
-This task is premised on a load-bearing conceptual error (it conflates upstream curl.md's
-network URL-rewriter **`Rule`s** — github/mdn — with the pure, network-free **`Profile`s** —
-vitepress/docusaurus). A build agent surfaced this; building as written is impossible
-(github/mdn "rules" ARE the forbidden network fetch). The resolution is a SCOPE change
-recorded on the source prd `distilly-engine` (now `needsAnswers: true` in `prds/tasked/`):
-distilly will own BOTH a pure Profile registry AND a separate network-Rules path with a
-caller-injected `fetch`. Do NOT build this task as written.
+A build agent surfaced a load-bearing conceptual error: this task conflated upstream
+curl.md's network URL-rewriter **Rules** (github/mdn — they FETCH cleaner source, forbidden
+on a pure path) with its pure, network-free **Profiles** (vitepress/docusaurus —
+generator-keyed content-root selectors). Building it as written was impossible.
 
-1. See `work/prds/tasked/distilly-engine.md` § "Needs answers" for the two open questions
-   (the injected-`fetch` seam shape, and the packaging/entrypoint split).
-2. Once answered, this task is SUPERSEDED: it will be re-decomposed into a pure-Profile
-   slice + a separate network-Rules-with-injected-fetch slice, and this file moved to
-   `tasks/cancelled/` (reason: superseded by the re-task).
+Resolved by the decision in `docs/adr/0001-rule-vs-profile-and-injected-fetch.md`: distilly
+owns BOTH, cleanly separated. This task is superseded by:
+
+- **`vendor-profile-registry-site-subset`** — the pure Profile registry (covers story 6).
+- **`network-fetch-entrypoint-rules`** — the networked `distilly/fetch` entrypoint with the
+  injected-`fetch` Rules (covers stories 9, 10).
+
+The original body is retained below for provenance.
 
 ## What to build
 

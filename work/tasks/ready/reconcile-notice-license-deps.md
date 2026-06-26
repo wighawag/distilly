@@ -2,7 +2,7 @@
 title: Reconcile NOTICE, LICENSE, and dependency manifest with what was actually vendored
 slug: reconcile-notice-license-deps
 prd: distilly-engine
-blockedBy: [vendor-rules-registry-site-subset]
+blockedBy: [network-fetch-entrypoint-rules]
 covers: [7]
 ---
 
@@ -19,10 +19,13 @@ curl.md's `src/md/`, which runtime deps the code really imports) and make `NOTIC
 Scope:
 
 - **`NOTICE`**: confirm it credits wevm/curl.md's MIT copyright and accurately lists what
-  was vendored (`fromHtml`, `chunk`/truncation, `rules/*`, `profiles`/`sites`) and what was
-  removed (hosted client, network `mod.ts` wrapper, `#db` import). Correct it to match what
-  the build tasks ACTUALLY vendored (add/remove items as reality dictates) — do not let it
-  claim something that was not carried over, or omit something that was.
+  was vendored (`fromHtml`, truncation, the pure **Profiles** registry, AND — behind the
+  `distilly/fetch` entrypoint — the network **Rules** + the pure rule-dispatch salvaged
+  from `mod.ts`) and what was removed (the HOSTED client, the `#db` import, the
+  `hono`/Cloudflare/transport coupling; note distilly's own networking is confined to the
+  caller-injected `fetch` seam per ADR-0001). Correct it to match what the build tasks
+  ACTUALLY vendored (add/remove items as reality dictates) — do not let it claim something
+  that was not carried over, or omit something that was.
 - **`LICENSE`**: confirm distilly is MIT and the file is correct/complete.
 - **`packages/distilly/package.json`**: ensure `dependencies` lists exactly the runtime
   packages the vendored code imports (the unified/rehype/remark set + `tokenx` if used) —

@@ -18,17 +18,29 @@ who needs page-to-markdown extraction without a third-party service.
 
 ## Domain terms
 
-- **distill / htmlToMarkdown** — convert a raw HTML string into clean markdown. The
-  single public entry point. Signature (pinned by webveil's Extractor seam):
+- **distill / htmlToMarkdown** — convert a raw HTML string into clean markdown (the PURE
+  entrypoint). Signature (pinned by webveil's Extractor seam):
   `htmlToMarkdown(html, { baseUrl?, rules?, size? }) => Promise<{ markdown, truncated }>`.
+  Imports NO networking.
+- **urlToMarkdown** — the NETWORKED entrypoint (`distilly/fetch`):
+  `urlToMarkdown(url, { fetch, rules }) => Promise<{ markdown, truncated }>`. The caller
+  INJECTS `fetch`; distilly bakes in no egress. Applies network **Rules**, then runs the
+  fetched HTML through the pure core. See `docs/adr/0001-rule-vs-profile-and-injected-fetch.md`.
 - **size preset** — `s` / `m` / `l` / `f` (~5k / 10k / 25k / full chars); the budget the
   markdown is truncated to, so agents control context cost.
-- **rule** — a per-site cleanup/extraction rule (e.g. github, mdn, cloudflare,
-  tailwind), vendored from curl.md's `rules/`. The tuned part of the engine; the rule
-  set is pluggable and can grow over time.
-- **profile** — a named extraction configuration (vendored from curl.md's `profiles`).
+- **Profile** (PURE, network-free) — a per-site extraction config keyed by the page's
+  doc-site **generator** (vitepress, docusaurus, mintlify, sphinx, starlight, ...). Its
+  `contentRootSelectors` tell the converter which DOM subtree is the real content. Vendored
+  from curl.md's `profiles.ts`; operates on HTML the caller already has. The pure `rules?`
+  option is a `Profile`. Pluggable; can grow.
+- **Rule** (NETWORK) — a per-site URL-rewriter keyed by **URL pattern** (github, mdn,
+  cloudflare, zero, ...) that BYPASSES the page HTML and fetches cleaner source from an
+  alternate endpoint (GitHub API, raw.githubusercontent, `.md` URLs). Vendored from
+  curl.md's `rules.ts`; lives ONLY behind the networked `distilly/fetch` entrypoint and
+  runs only via the caller-injected `fetch`. **Not the same as a Profile** — Profile is
+  pure/generator-keyed, Rule is network/URL-keyed; do not conflate them.
 - **vendored engine** — the subset of curl.md's `src/md/` carved into distilly, with
-  the network/server/db coupling removed.
+  the server/db coupling removed and the network confined to the injected-`fetch` seam.
 
 ## Stack
 
