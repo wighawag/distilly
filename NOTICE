@@ -9,10 +9,33 @@ This product includes software derived from:
   Licensed under the MIT License.
 
   Specifically, distilly vendors and adapts the local HTML-to-markdown engine
-  from curl.md's `src/md/` (notably `fromHtml`, `chunk`, `rules/*`, and
-  `profiles`), with the hosted-service client, the network `mod.ts` fetch
-  wrapper, and the type-only `#db` import removed. The vendored portions remain
-  under the MIT License above.
+  from curl.md's `src/md/`. The carve-out kept:
+
+    - `fromHtml` — the pure unified/rehype/remark HTML-to-markdown conversion
+      (`src/md/fromHtml.ts`).
+    - the pure per-site Profiles registry and its generator-keyed detection
+      (`src/md/profiles.ts` + the pure `detectPageProfile`/`defineProfile`
+      parts of `src/md/mod.ts`), as a starter subset.
+    - the network URL-rewriter Rules and the pure rule match/dispatch
+      (`src/md/rules.ts`, `src/md/rules/*` + the pure orchestration parts of
+      `src/md/mod.ts`), as a starter subset, confined behind the
+      `distilly/fetch` entrypoint.
+
+  The carve-out removed (left in curl.md's server, not vendored):
+
+    - curl.md's hosted-service client and its npm client.
+    - the network `mod.ts` fetch wrapper, including its default of
+      `globalThis.fetch`; distilly bakes in NO `fetch` and reaches the network
+      only through a caller-injected `fetch` seam (see
+      `docs/adr/0001-rule-vs-profile-and-injected-fetch.md`).
+    - the type-only `#db` import and the `hono`/Cloudflare/transport coupling.
+    - `tokenx` source-token accounting and the `zod`-backed heavier rule paths
+      (authenticated GitHub GraphQL/REST, MDN browser-compat fetches).
+
+  Truncation to the size presets is distilly's own code (`src/truncate.ts`),
+  not curl.md's `chunk`. The vendored portions remain under the MIT License
+  above.
 
   distilly does NOT use curl.md's hosted service or its npm client; it performs
-  conversion locally only.
+  conversion locally and reaches the network only through the caller-injected
+  `fetch`.
