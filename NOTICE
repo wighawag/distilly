@@ -1,0 +1,18 @@
+distilly
+Copyright (c) 2026 wighawag
+Licensed under the MIT License (see LICENSE).
+
+This product includes software derived from:
+
+  wevm/curl.md  (https://github.com/wevm/curl.md)
+  Copyright (c) 2026 weth, LLC
+  Licensed under the MIT License.
+
+  Specifically, distilly vendors and adapts the local HTML-to-markdown engine
+  from curl.md's `src/md/` (notably `fromHtml`, `chunk`, `rules/*`, and
+  `profiles`), with the hosted-service client, the network `mod.ts` fetch
+  wrapper, and the type-only `#db` import removed. The vendored portions remain
+  under the MIT License above.
+
+  distilly does NOT use curl.md's hosted service or its npm client; it performs
+  conversion locally only.
