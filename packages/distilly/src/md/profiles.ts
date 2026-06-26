@@ -1,3 +1,9 @@
+// Provenance: wevm/curl.md @ e81e116 (approx — see docs/VENDORING.md). Upstream:
+//   src/md/profiles.ts + the PURE detection parts of src/md/mod.ts. Closeness:
+//   MEDIUM — the profile DATA (per-site contentRootSelectors + detect needles)
+//   is near-verbatim and the easy thing to re-sync / add to; the detection
+//   helper was carved out of mod.ts (network `resolve`/`markdownUrl` dropped).
+//
 // Vendored from wevm/curl.md (MIT), `src/md/profiles.ts` + the PURE detection
 // parts of `src/md/mod.ts` (`defineProfile.detector` / `detectPageProfile`).
 //

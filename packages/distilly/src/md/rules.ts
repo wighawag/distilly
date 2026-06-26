@@ -1,3 +1,12 @@
+// Provenance: wevm/curl.md @ e81e116 (approx — see docs/VENDORING.md). Upstream:
+//   src/md/rules.ts (+ rules/github.ts, rules/mdn.ts, rules/utils.ts). Closeness:
+//   MIXED — individual rewrite functions (githubBlob, vue, reactDev, the appendMd
+//   helper) are NEAR-VERBATIM and are the easy fast-path for adding a new docs
+//   site; but the HEAVY rules diverge ON PURPOSE: upstream's `github` (auth
+//   GraphQL/REST, zod) is replaced by the pure `githubBlob`, and `mdn` STRIPS the
+//   {{Compat}}/{{Specifications}} macros upstream fills via network sub-requests.
+//   When re-syncing, copy new SIMPLE site rewrites freely; re-derive heavy ones.
+//
 // Vendored from wevm/curl.md (MIT) — a STARTER SUBSET of the network
 // URL-rewriter Rules from `src/md/rules.ts` (+ `rules/github.ts`,
 // `rules/mdn.ts`, `rules/utils.ts`). Each rule rewrites a matching page URL to

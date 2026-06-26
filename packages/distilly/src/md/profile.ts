@@ -1,3 +1,8 @@
+// Provenance: wevm/curl.md @ e81e116 (approx — see docs/VENDORING.md). Upstream:
+//   the `defineProfile.Profile` type inside src/md/mod.ts. Closeness: LOW — this
+//   is a distilly-shaped local type extracted to break the mod.ts dependency,
+//   not a verbatim copy; keep it in shape-parity with upstream's Profile fields.
+//
 // Vendored from wevm/curl.md (MIT) — the `Profile` type that the pure
 // conversion (`fromHtml`) reads. Upstream this type lives in the network
 // wrapper `src/md/mod.ts` (`defineProfile.Profile`); distilly must NOT vendor

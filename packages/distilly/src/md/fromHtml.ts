@@ -1,3 +1,8 @@
+// Provenance: wevm/curl.md @ e81e116 (approx — newest src/md commit at vendoring;
+//   see docs/VENDORING.md for the update procedure). Upstream file: src/md/fromHtml.ts.
+//   Closeness to upstream: HIGH — the conversion logic is largely intact; the only
+//   structural change is relocating the `Profile` type import (see profile.ts).
+//
 // Vendored from wevm/curl.md (MIT), `src/md/fromHtml.ts`. This is the pure
 // HTML-to-markdown conversion on the unified/rehype/remark stack, carved out of
 // curl.md's server/network/db code: the upstream `import type { Profile } from

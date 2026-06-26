@@ -1,3 +1,10 @@
+// Provenance: wevm/curl.md @ e81e116 (approx — see docs/VENDORING.md). Upstream:
+//   the Rule machinery from src/md/rules.ts + the rule-match/dispatch parts of
+//   src/md/mod.ts. Closeness: LOW — deliberately re-shaped: distilly's `defineRule`
+//   takes a CALLER-INJECTED fetch (upstream defaults `globalThis.fetch`). Do NOT
+//   copy upstream's `mod.ts` dispatch verbatim; preserve the no-baked-in-fetch
+//   invariant (see docs/adr/0001).
+//
 // Vendored from wevm/curl.md (MIT) — the NETWORK rule machinery from
 // `src/md/rules.ts` + the pure rule-matching/dispatch parts of `src/md/mod.ts`.
 //
