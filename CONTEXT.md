@@ -8,9 +8,13 @@ contacts **no hosted service**: callers hand it HTML they already fetched, and i
 returns clean markdown. MIT licensed.
 
 Its engine is **vendored from and decoupled from** wevm/curl.md's `src/md/`: distilly
-keeps the local conversion (`fromHtml`, `chunk`, `rules/*`, `profiles`) and drops
-curl.md's hosted client, the network `mod.ts` fetch wrapper, and the type-only `#db`
-import. The vendored portions remain MIT and are credited in `NOTICE`.
+keeps the pure conversion (`fromHtml`), the pure per-site `Profiles` registry, and the
+network URL-rewriter `Rules` (the latter confined behind the `distilly/fetch` entrypoint).
+It drops curl.md's hosted client and the type-only `#db`/`hono` coupling, and bakes in NO
+`fetch` — the network is reached only through a caller-injected `fetch` (see
+`docs/adr/0001-rule-vs-profile-and-injected-fetch.md`). Size-preset truncation is
+distilly's own code (`src/truncate.ts`), not curl.md's `chunk`. The vendored portions
+remain MIT and are credited in `NOTICE`.
 
 distilly's primary consumer is **webveil**'s extractor seam (an anonymous-capable,
 self-hosted web search/fetch tool), but it is a standalone library usable by anyone
