@@ -3,6 +3,16 @@
 	"version": "0.0.0",
 	"description": "Distill HTML into clean, token-efficient markdown for agents. Pure, local, no network. Engine vendored and decoupled from wevm/curl.md.",
 	"license": "MIT",
+	"author": "wighawag",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/wighawag/distilly.git",
+		"directory": "packages/distilly"
+	},
+	"homepage": "https://github.com/wighawag/distilly#readme",
+	"bugs": {
+		"url": "https://github.com/wighawag/distilly/issues"
+	},
 	"keywords": [
 		"html",
 		"markdown",
@@ -27,7 +37,10 @@
 	},
 	"files": [
 		"dist",
-		"src"
+		"src",
+		"README.md",
+		"LICENSE",
+		"NOTICE"
 	],
 	"dependencies": {
 		"@types/hast": "^3.0.4",
@@ -46,6 +59,7 @@
 		"vitest": "^4.0.18"
 	},
 	"scripts": {
+		"prepack": "cp -f ../../README.md ../../LICENSE ../../NOTICE .",
 		"build": "tsc",
 		"dev": "as-soon -w src pnpm build",
 		"test": "vitest run",
