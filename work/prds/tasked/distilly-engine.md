@@ -57,50 +57,13 @@ per-site rules and supports size presets so agents control context cost.
 ### Autonomy notes (the two gate axes)
 
 - **humanOnly:** omitted. An agent may task and build this; the design is resolved.
-- **needsAnswers:** omitted. No open questions block tasking. The carve-out boundary is
-  specified below from a source review already performed.
+- **needsAnswers:** omitted. No open questions block tasking. The carve-out boundary was
+  specified from a source review and now lives in the tasks.
 
-## Implementation Decisions
-
-Vendor from curl.md `src/md/` (reviewed at a recent commit). **Keep**: `fromHtml.ts`
-(pure `fromHtml(html, options) => markdown` on the unified/rehype/remark stack:
-`rehype-parse`, `rehype-remark`, `remark-gfm`, `remark-stringify`, `unified`, `hast`/
-`vfile` types), `chunk.ts`, `rules/*` (+ the `rules.ts` registry), `profiles.ts`,
-`sites.ts`, and `tokenx` for token estimation.
-
-**Drop / decouple**:
-- `mod.ts`'s network `fetch()` wrapper (distilly never fetches; callers provide HTML).
-  Salvage only the pure rule-application/profile-selection logic it wraps, not the
-  request path.
-- The type-only `import type { DB } from '#db/types.gen.ts'` in `mod.ts` — inline a local
-  string-literal-union type instead.
-- Test-only `~/components` import; any server/`hono`/Cloudflare references (the `hono`
-  hits in `rules.ts` are a site-rule for `hono.dev`, NOT the framework — keep that rule).
-
-**Public API** (the only export consumers depend on): `htmlToMarkdown(html, { baseUrl?,
-rules?, size? }) => Promise<{ markdown, truncated }>` plus the `Size` type. Internally it
-parses with `fromHtml`, applies matching rules, then truncates to the size budget
-(`s`/`m`/`l`/`f` ≈ 5k/10k/25k/full chars), setting `truncated` when the budget cut
-content. Truncation must be UTF-8 code-point safe.
-
-**Packaging**: single published package `packages/distilly` (already scaffolded). Runtime
-deps = the unified/rehype/remark set + `tokenx`. MIT `LICENSE` + `NOTICE` crediting
-wevm/curl.md are already in place; keep them accurate as code is vendored. The MIT
-library must contain only MIT-compatible code (no GPL/AGPL), since it is consumed by the
-AGPL `webveil`.
-
-## Testing Decisions
-
-Test external behaviour at the public seam `htmlToMarkdown`, not internals:
-- Known HTML in -> expected markdown out (headings, lists, tables, links, code blocks).
-- `baseUrl` resolves relative links to absolute.
-- Size presets enforce their char budgets and set `truncated` correctly; truncation never
-  splits a UTF-8 code point.
-- At least one per-site rule (e.g. github or mdn) demonstrably cleans a representative
-  page better than the generic path.
-- No network is performed (the function is pure given its HTML input).
-Port/adapt curl.md's own `fromHtml`/`rules`/`chunk` tests where licensing-compatible as a
-regression baseline (they are MIT).
+> Tasked: the implementation and testing detail (the curl.md `src/md/` carve-out, the
+> public API shape, size-preset/truncation rules, and the licensing reconciliation) now
+> lives in the task files under `work/tasks/` and any ADRs in `docs/adr/`. This prd keeps
+> only its durable framing below.
 
 ## Out of Scope
 
