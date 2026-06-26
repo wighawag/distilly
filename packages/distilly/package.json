@@ -1,6 +1,6 @@
 {
 	"name": "distilly",
-	"version": "0.0.0",
+	"version": "0.1.0",
 	"description": "Distill HTML into clean, token-efficient markdown for agents. Pure, local, no network. Engine vendored and decoupled from wevm/curl.md.",
 	"license": "MIT",
 	"author": "wighawag",
