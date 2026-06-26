@@ -1,9 +1,62 @@
 ---
 title: distilly — vendor and decouple curl.md's local HTML-to-markdown engine into a pure MIT library
 slug: distilly-engine
+needsAnswers: true
 ---
 
 > Launch snapshot — records intent at creation, NOT maintained. Current truth: `docs/adr/` + code; remaining work: `work/tasks/ready/`.
+
+## Needs answers (drifted after tasking — do NOT re-task until reconciled)
+
+This prd was tasked (it rests in `prds/tasked/`), but a build agent surfaced a
+load-bearing conceptual error in story 6 and the per-site task derived from it. The
+correction is a SCOPE CHANGE, so the prd is flagged `needsAnswers: true` in place (per
+WORK-CONTRACT.md "a prd that has drifted AFTER it was tasked"): tasks 1 and 2 already
+landed and are unaffected; the per-site task `vendor-rules-registry-site-subset` is also
+flagged and must not be built until this is resolved.
+
+**The error.** Story 6 ("carry over curl.md's per-site rules — github, mdn, cloudflare,
+tailwind, zero") conflates TWO different upstream concepts under one word, "rule":
+
+- Upstream **`Rule`** (`rules.ts`: github, mdn, cloudflare, zero) = **network URL-rewriters**
+  that BYPASS the page HTML and fetch raw markdown from an alternate source (GitHub API,
+  raw.githubusercontent, `.md` endpoints). They are inherently network-bound.
+- Upstream **`Profile`** (`profiles.ts`: vitepress, docusaurus, mintlify, sphinx,
+  starlight) = **pure, network-free** per-site content-root selectors, keyed by doc-site
+  generator. This is what the landed `fromHtml` reads (`contentRootSelectors`) and what the
+  landed public `rules?: Profile` option already binds to.
+
+So "a per-site rule (github/mdn) cleans the same HTML better than generic, network-free"
+is impossible: github/mdn's value IS the forbidden network fetch.
+
+**The decision taken (to encode on reconcile + clear this flag).** distilly will OWN BOTH
+halves, cleanly SEPARATED, so it can be used two ways:
+
+1. **Pure path** (today's `htmlToMarkdown(html, ...)`): zero network, imports no
+   networking. A pure **Profile** registry (vitepress/docusaurus/...) tunes per-site
+   quality here.
+2. **Fetching path** (new, e.g. `urlToMarkdown(url, { fetch, rules })`): the network
+   URL-rewriter **Rules** (github/mdn) live here, BUT distilly bakes in NO fetch — the
+   CALLER injects `fetch` (this is what lets webveil supply its anonymity-preserving
+   egress). Still no use of curl.md's HOSTED client/service.
+
+This REVISES the original "Out of Scope" line "Fetching/network … live in webveil, not
+here": network is now in-scope for distilly AS A CALLER-INJECTED CAPABILITY, separated
+from the pure core; the hosted-service prohibition stands.
+
+**Open questions for the human (answer, then re-decompose + clear `needsAnswers`):**
+
+1. Confirm the injected-`fetch` seam shape: `urlToMarkdown(url, { fetch, rules })` where
+   distilly imports no networking and the caller supplies `fetch` (so a no-`fetch` call
+   can never touch the network). Yes / adjust?
+2. Packaging: two entrypoints (`distilly` pure + `distilly/fetch` networked) so a pure
+   consumer cannot even import the network half, or both from the single entrypoint as
+   long as the pure one pulls in no network code?
+
+(When answered: re-task the per-site work into a pure-Profile slice + a separate
+network-Rules-with-injected-fetch slice, supersede the stale
+`vendor-rules-registry-site-subset` task, update story 6 + Out of Scope above, and clear
+`needsAnswers` on this prd.)
 
 ## Problem Statement
 

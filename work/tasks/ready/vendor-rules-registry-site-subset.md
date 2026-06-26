@@ -2,9 +2,26 @@
 title: Vendor the pluggable rules/profiles registry plus a starter per-site rule subset
 slug: vendor-rules-registry-site-subset
 prd: distilly-engine
+needsAnswers: true
 blockedBy: [public-htmltomarkdown-seam-size-presets]
 covers: [5, 6]
 ---
+
+## Open questions
+
+This task is premised on a load-bearing conceptual error (it conflates upstream curl.md's
+network URL-rewriter **`Rule`s** — github/mdn — with the pure, network-free **`Profile`s** —
+vitepress/docusaurus). A build agent surfaced this; building as written is impossible
+(github/mdn "rules" ARE the forbidden network fetch). The resolution is a SCOPE change
+recorded on the source prd `distilly-engine` (now `needsAnswers: true` in `prds/tasked/`):
+distilly will own BOTH a pure Profile registry AND a separate network-Rules path with a
+caller-injected `fetch`. Do NOT build this task as written.
+
+1. See `work/prds/tasked/distilly-engine.md` § "Needs answers" for the two open questions
+   (the injected-`fetch` seam shape, and the packaging/entrypoint split).
+2. Once answered, this task is SUPERSEDED: it will be re-decomposed into a pure-Profile
+   slice + a separate network-Rules-with-injected-fetch slice, and this file moved to
+   `tasks/cancelled/` (reason: superseded by the re-task).
 
 ## What to build
 
