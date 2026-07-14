@@ -1,7 +1,7 @@
 ---
 title: Vendor the pluggable rules/profiles registry plus a starter per-site rule subset
 slug: vendor-rules-registry-site-subset
-prd: distilly-engine
+spec: distilly-engine
 blockedBy: [public-htmltomarkdown-seam-size-presets]
 covers: [5, 6]
 reason: superseded by re-task — conflated curl.md's pure Profiles (vitepress/docusaurus) with its network Rules (github/mdn). Re-decomposed into `vendor-profile-registry-site-subset` (pure) + `network-fetch-entrypoint-rules` (injected-fetch) per ADR-0001.
@@ -85,7 +85,7 @@ tuned per-site quality + pluggability (6). It touches the vendored-engine area a
 > beats the generic extraction path.
 >
 > FIRST, check this task against current reality (launch snapshot, may have DRIFTED):
-> re-read `work/prds/tasked/distilly-engine.md`, `CONTEXT.md` (domain terms: **rule** = a
+> re-read `work/specs/tasked/distilly-engine.md`, `CONTEXT.md` (domain terms: **rule** = a
 > per-site cleanup/extraction rule, the tuned + pluggable part of the engine; **profile** =
 > a named extraction config; **vendored engine** = the carved subset of curl.md's
 > `src/md/`), and what the two prior tasks landed in `tasks/done/`: how `fromHtml` consumes

@@ -73,7 +73,7 @@ Neither path uses curl.md's hosted client/service.
 
 > Tasked: the implementation and testing detail (the curl.md `src/md/` carve-out, the
 > public API shape, size-preset/truncation rules, and the licensing reconciliation) now
-> lives in the task files under `work/tasks/` and any ADRs in `docs/adr/`. This prd keeps
+> lives in the task files under `work/tasks/` and any ADRs in `docs/adr/`. This spec keeps
 > only its durable framing below.
 
 ## Out of Scope

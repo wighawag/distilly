@@ -1,7 +1,7 @@
 ---
 title: Vendor curl.md's fromHtml core conversion, decoupled from the server
 slug: vendor-fromhtml-core
-prd: distilly-engine
+spec: distilly-engine
 blockedBy: []
 covers: [3, 5]
 ---
@@ -74,7 +74,7 @@ goal is parity with upstream's pure path.
 > server/network/db, as the foundation distilly's public `htmlToMarkdown` will wrap.
 >
 > FIRST, check this task against current reality (it is a launch snapshot and may have
-> DRIFTED): re-read `work/prds/tasked/distilly-engine.md` (the source PRD), `CONTEXT.md`
+> DRIFTED): re-read `work/specs/tasked/distilly-engine.md` (the source PRD), `CONTEXT.md`
 > (domain terms: distill, size preset, rule, profile, vendored engine), and the existing
 > placeholder `packages/distilly/src/index.ts`. If the placeholder or PRD assumptions no
 > longer hold, route to needs-attention with the discrepancy rather than building on a

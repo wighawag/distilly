@@ -119,7 +119,7 @@ export function getMetaContent(html: string, name: string): string | undefined {
 // Ported faithfully (selectors + detect rules) from curl.md's `profiles.ts`.
 // The network `resolve`/`checks` parts are dropped. This is a SOLID STARTER
 // SUBSET, not an exhaustive port (an exhaustive port is out of scope per the
-// PRD); the set is pluggable and can grow.
+// spec); the set is pluggable and can grow.
 
 export const docusaurus = defineProfile({
 	contentRootSelectors: ['.markdown', '.theme-doc-markdown'],

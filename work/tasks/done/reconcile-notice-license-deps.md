@@ -1,7 +1,7 @@
 ---
 title: Reconcile NOTICE, LICENSE, and dependency manifest with what was actually vendored
 slug: reconcile-notice-license-deps
-prd: distilly-engine
+spec: distilly-engine
 blockedBy: [network-fetch-entrypoint-rules]
 covers: [7]
 ---
@@ -62,7 +62,7 @@ so it runs last and audits the real result rather than the plan.
 > (MIT), accurate vendored/removed list, and an exact, copyleft-free runtime dependency set.
 >
 > FIRST, check this task against current reality (launch snapshot, may have DRIFTED):
-> re-read `work/prds/tasked/distilly-engine.md` (story 7 + the licensing constraints),
+> re-read `work/specs/tasked/distilly-engine.md` (story 7 + the licensing constraints),
 > `CONTEXT.md`, the CURRENT `NOTICE` and `LICENSE`, and inspect what the prior tasks landed
 > in `tasks/done/` and under `packages/distilly/src` (which curl.md modules were vendored,
 > which runtime packages the code imports). Audit the REAL result; if the landed code

@@ -1,7 +1,7 @@
 ---
 title: Networked distilly/fetch entrypoint with caller-injected fetch and URL-rewriter Rules
 slug: network-fetch-entrypoint-rules
-prd: distilly-engine
+spec: distilly-engine
 blockedBy: [vendor-profile-registry-site-subset]
 covers: [9, 10]
 ---
@@ -86,7 +86,7 @@ Scope:
 > bakes in NO egress and the pure entrypoint stays network-free.
 >
 > FIRST, check this task against current reality (launch snapshot, may have DRIFTED):
-> re-read `work/prds/tasked/distilly-engine.md` (stories 9, 10 + the revised Out of Scope),
+> re-read `work/specs/tasked/distilly-engine.md` (stories 9, 10 + the revised Out of Scope),
 > `docs/adr/0001-rule-vs-profile-and-injected-fetch.md` (the load-bearing design: Rule =
 > NETWORK/URL-keyed, injected `fetch`, two isolated entrypoints), `CONTEXT.md`, and what the
 > prior tasks landed in `tasks/done/`: the pure `htmlToMarkdown`/`fromHtml` core and the

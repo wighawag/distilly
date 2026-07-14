@@ -14,7 +14,7 @@
 // fetched via the caller-injected `fetch` and run through the pure core.
 //
 // This is a SOLID STARTER SUBSET, not an exhaustive port (an exhaustive port is
-// out of scope per the PRD); the set is PLUGGABLE — a caller passes their own
+// out of scope per the spec); the set is PLUGGABLE — a caller passes their own
 // `rules` array to `urlToMarkdown` to override/extend it.
 //
 // Intentionally NOT vendored from upstream's heavier rules (kept out to avoid

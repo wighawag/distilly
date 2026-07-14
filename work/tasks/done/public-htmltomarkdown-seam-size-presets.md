@@ -1,7 +1,7 @@
 ---
 title: Public htmlToMarkdown seam with size presets and UTF-8-safe truncation
 slug: public-htmltomarkdown-seam-size-presets
-prd: distilly-engine
+spec: distilly-engine
 blockedBy: [vendor-fromhtml-core]
 covers: [1, 2, 4, 8]
 ---
@@ -72,7 +72,7 @@ type — do not rename or reshape these.
 > flag, and keep the function pure (no network).
 >
 > FIRST, check this task against current reality (launch snapshot, may have DRIFTED):
-> re-read `work/prds/tasked/distilly-engine.md`, `CONTEXT.md`, the current
+> re-read `work/specs/tasked/distilly-engine.md`, `CONTEXT.md`, the current
 > `packages/distilly/src/index.ts` (placeholder with the pinned `Size` /
 > `HtmlToMarkdownOptions` / `HtmlToMarkdownResult` types), `packages/distilly/test/hello.test.ts`,
 > and — crucially — what the `vendor-fromhtml-core` task actually landed in `tasks/done/`

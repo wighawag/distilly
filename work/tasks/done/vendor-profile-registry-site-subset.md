@@ -1,7 +1,7 @@
 ---
 title: Vendor the pure Profile registry plus a starter per-site profile subset
 slug: vendor-profile-registry-site-subset
-prd: distilly-engine
+spec: distilly-engine
 blockedBy: []
 covers: [6]
 ---
@@ -76,7 +76,7 @@ this task supplies the Profile DATA + DETECTION that make them useful per-site.
 > generic extraction path on identical HTML.
 >
 > FIRST, check this task against current reality (launch snapshot, may have DRIFTED):
-> re-read `work/prds/tasked/distilly-engine.md` (story 6), `docs/adr/0001-rule-vs-profile-and-injected-fetch.md`
+> re-read `work/specs/tasked/distilly-engine.md` (story 6), `docs/adr/0001-rule-vs-profile-and-injected-fetch.md`
 > (the Profile-vs-Rule split + injected-fetch decision — Profile is PURE/generator-keyed;
 > Rule is NETWORK/URL-keyed and is a SEPARATE task), `CONTEXT.md` (domain terms), and what
 > tasks 1 and 2 landed in `tasks/done/`: the pure `fromHtml` reading
