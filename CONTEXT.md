@@ -57,4 +57,4 @@ unified / rehype / remark ecosystem (`rehype-parse`, `rehype-remark`, `remark-gf
 ## Verify gate
 
 `pnpm format:check && pnpm build && pnpm test` (prepare: `pnpm install`). See
-`.dorfl.json`.
+`dorfl.json`.
