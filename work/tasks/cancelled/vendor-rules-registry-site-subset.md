@@ -41,7 +41,7 @@ Scope:
   no `hono` FRAMEWORK import). NOTE: the `hono` token that appears in upstream `rules.ts`
   is a SITE rule for `hono.dev` (the docs site) — KEEP that rule; it is not the framework.
 - Ship a SOLID STARTER SUBSET of per-site rules (e.g. github, mdn, cloudflare, tailwind,
-  zero) — not an exhaustive port (out of scope per the PRD). Carry the rules over faithfully.
+  zero) — not an exhaustive port (out of scope per the spec). Carry the rules over faithfully.
 - Make the rule set PLUGGABLE: a caller can pass their own `rules` to override/extend, and
   the default (omitted) uses the bundled set. Export whatever public types/registry a
   consumer needs to supply custom rules.
@@ -104,7 +104,7 @@ tuned per-site quality + pluggability (6). It touches the vendored-engine area a
 > `transports.ts`, `#db/*`, `~/components`, or any Cloudflare/server code. distilly stays
 > dependency-light and MIT-only (it is consumed by AGPL webveil — no GPL/AGPL code here).
 >
-> Out of scope (PRD): an EXHAUSTIVE port of every curl.md site rule. Ship a solid STARTER
+> Out of scope (spec): an EXHAUSTIVE port of every curl.md site rule. Ship a solid STARTER
 > subset (github, mdn, and a few more like cloudflare/tailwind/zero) and make the set
 > pluggable so it can grow later.
 >

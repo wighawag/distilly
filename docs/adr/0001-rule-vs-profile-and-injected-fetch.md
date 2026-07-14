@@ -43,7 +43,7 @@ package entrypoints**, rather than punting the network half to the downstream (w
 
 ## Consequences
 
-- This REVISES the original ''PRD'' scope line "Fetching/network ... live in webveil, not
+- This REVISES the original spec scope line "Fetching/network ... live in webveil, not
   here": network is now in-scope for distilly **as a caller-injected capability**,
   separated from the pure core. The hosted-service prohibition (no use of curl.md's hosted
   client/service) still stands.

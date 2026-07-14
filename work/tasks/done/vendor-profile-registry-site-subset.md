@@ -32,7 +32,7 @@ Scope:
   meta-generator and DOM needles, no `URLPattern` / `fetch` / `#db`). Decoupled from the
   server: no `mod.ts`, no `transports.ts`, no `hono`, no Cloudflare/db code.
 - Ship a SOLID STARTER SUBSET of profiles (e.g. vitepress, docusaurus, mintlify, sphinx,
-  starlight) — not an exhaustive port (out of scope per the PRD). Carry them over faithfully.
+  starlight) — not an exhaustive port (out of scope per the spec). Carry them over faithfully.
 - Make the set PLUGGABLE: a caller can pass their own Profile via the existing `rules?`
   option (already typed `Profile` in `src/index.ts`) to override/extend; omitting it
   auto-detects from the bundled set. Export the author-facing Profile types/registry.

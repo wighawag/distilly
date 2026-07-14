@@ -92,7 +92,7 @@ type — do not rename or reshape these.
 > ADD `rules?` to the options type). The conversion engine is whatever
 > `vendor-fromhtml-core` vendored under `packages/distilly/src`. curl.md's upstream had a
 > `chunk.ts`/`tokenx` for budgeting — you MAY vendor/adapt its truncation logic (MIT) or
-> implement a straightforward code-point-safe char-budget truncation; the PRD specifies a
+> implement a straightforward code-point-safe char-budget truncation; the spec specifies a
 > CHAR budget (~5k/10k/25k), so a char-count budget is the contract, not a token count.
 >
 > Seams to test at: the PUBLIC `htmlToMarkdown` seam only (external behaviour), not

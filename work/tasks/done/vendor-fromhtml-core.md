@@ -74,9 +74,9 @@ goal is parity with upstream's pure path.
 > server/network/db, as the foundation distilly's public `htmlToMarkdown` will wrap.
 >
 > FIRST, check this task against current reality (it is a launch snapshot and may have
-> DRIFTED): re-read `work/specs/tasked/distilly-engine.md` (the source PRD), `CONTEXT.md`
+> DRIFTED): re-read `work/specs/tasked/distilly-engine.md` (the source spec), `CONTEXT.md`
 > (domain terms: distill, size preset, rule, profile, vendored engine), and the existing
-> placeholder `packages/distilly/src/index.ts`. If the placeholder or PRD assumptions no
+> placeholder `packages/distilly/src/index.ts`. If the placeholder or spec assumptions no
 > longer hold, route to needs-attention with the discrepancy rather than building on a
 > stale premise.
 >
